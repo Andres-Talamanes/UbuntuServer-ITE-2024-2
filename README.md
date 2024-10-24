@@ -5,6 +5,7 @@
 3. [Limitar el almacenamiento con edquota](#limitar-el-almacenamiento-con-edquota)
 4. [Crear tuneles utilizando Ngrok en Ubuntu server](#crear-tuneles-utilizando-ngrok-en-ubuntu-server)
 5. [Crear tuneles utilizando CloudFlare en Ubuntu server](#crear-tuneles-utilizando-cloudflare-en-ubuntu-server)
+6. [Cargar o descargar archivos del servidor](#cargar-o-descargar-archivos-del-servidor)
 
 
 # UserDir con Apache
@@ -271,7 +272,26 @@ Mientras el túnel esté activo, podrás acceder a tu servicio local a través d
 
 Este método es ideal para pruebas rápidas, demostraciones o situaciones donde no deseas configurar un dominio completo.
 
+---
 
+# Cargar o descargar archivos del servidor
 
+1. Conectarse al servidor con sftp:
 
+```
+sftp usuario@servidor_remoto
+```
 
+Sustituyendo `usuario` por el nombre del usuario y `servidor-remoto` con la direccion ip del servidor
+
+2. Subir un archivo local al servidor:
+
+```
+put /ruta/del/archivo/archivo_local /ruta/donde/se/aloja/archivo_remoto
+```
+
+3. Descargar un archivo del servidor:
+
+```
+get /ruta/del/archivo/archivo_remoto /ruta/donde/se/aloja/archivo
+```
