@@ -295,3 +295,75 @@ put /ruta/del/archivo/archivo_local /ruta/donde/se/aloja/archivo_remoto
 ```
 get /ruta/del/archivo/archivo_remoto /ruta/donde/se/aloja/archivo
 ```
+---
+# Bloque de comandos
+En este apartado bloquearemos ciertos comandos en los cuales los usuarios no podran utilizarlos los cuales son:
+
+**wall:** Este comando muestra un mensaje las terminales de todos los usuarios conectados.
+
+**rm:** Este comando funciona para borrar archivos, directorios, etc.
+
+**reboot:** Este comando sirve para reiniciar el sistema que estan usando.
+
+1. Abrir el archivo souders utilizando visudo
+```
+sudo visudo
+```
+
+2. Agregaremos una regla para poder bloquear el primer comando wall.
+
+```
+ALL ALL = ALL, !/usr/bin/wall
+```
+
+3. Otorgaremos permisos para que solo los usuarios autorizados puedan ejecutarlo.
+```
+sudo chmod 750 /usr/bin/wall
+```
+
+4.Crearemos un grupo especial para los usuarios autorizados.
+```
+sudo groupadd wallusers
+```
+
+5. Asignaremos el grupo binario de wall.
+```
+sudo chown root:wallusers /usr/bin/wall
+```
+## Pasos para negar permisos.
+
+1. utilizaremos el comando para eliminar al usuario del grupo wallusers.
+
+**Nota**. Cambiar usuario por la que lo esta utilizando.
+
+```
+sudo gpasswd -d usuario wallusers
+```
+
+## Comando rm
+1. Crearemos el grupo para comando rm
+
+```
+sudo chown root:wallusers !/bin/rm
+```
+
+2.Asignaremos el grupo binario de wall.
+```
+sudo chown root:wallusers
+```
+
+## Comando Reboot
+1. Crearemos el grupo para comando rm
+
+```
+sudo chown root:wallusers !/sbin/shutdown 
+
+o 
+
+sudo chown root:wallusers !/sbin/reboot
+```
+
+2. Asignaremos el grupo binario de wall.
+```
+sudo chown root:wallusers
+```
