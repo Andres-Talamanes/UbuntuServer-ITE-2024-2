@@ -276,6 +276,8 @@ Este método es ideal para pruebas rápidas, demostraciones o situaciones donde 
 
 # Cargar o descargar archivos del servidor
 
+## Con STFP
+
 1. Conectarse al servidor con sftp:
 
 ```
@@ -295,6 +297,35 @@ put /ruta/del/archivo/archivo_local /ruta/donde/se/aloja/archivo_remoto
 ```
 get /ruta/del/archivo/archivo_remoto /ruta/donde/se/aloja/archivo
 ```
+
+## Con SCP
+
+1. Subir:
+
+```
+scp archivo_local usuario@servidor_remoto:/ruta/destino
+```
+
+Para subir una carpeta poner `-r` entre spc y archivo_local
+
+```
+scp -r archivo_local usuario@servidor_remoto:/ruta/destino
+```
+
+2. Descargar: 
+
+```
+scp usuarui@servidor_remoto:/ruta/del/archivo archivo_local
+```
+Para descargar una carpeta poner `-r` entre spc y usuario
+
+```
+scp usuario@servidor_remoto:/ruta/del/archivo archivo_local
+```
+
+Sustituyendo `usuario` por el nombre del usuario y `servidor-remoto` con la direccion ip del servidor
+
+
 ---
 # Bloque de comandos
 En este apartado bloquearemos ciertos comandos en los cuales los usuarios no podran utilizarlos los cuales son:
